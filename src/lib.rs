@@ -13,12 +13,21 @@ extern "C" fn init_engine() {
 }
 
 #[no_mangle]
-extern "C" fn update_game() {}
+extern "C" fn update_game() {
+    let a = vec![1, 0, 0, 1, 3];
+    let mut b = 0;
+    for v in a.iter() {
+        b += v;
+    }
+}
 
 #[no_mangle]
 extern "C" fn update_renderer() {
-    let mut h = HashMap::new();
-    h.insert("glColorBit", 0x00004000);
+    let h = {
+        let mut h = HashMap::new();
+        h.insert("glColorBit", 0x00004000);
+        h
+    };
     let v = vec![0.0];
     unsafe {
         glClearColor(v[0], 1.0, 1.0, 1.0);
