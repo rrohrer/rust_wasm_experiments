@@ -1,10 +1,22 @@
-
+use hecs::World;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 use web_sys::{WebGlProgram, WebGlRenderingContext, WebGlShader};
 
 #[wasm_bindgen(start)]
 pub fn start() -> Result<(), JsValue> {
+    /*
+        let mut world = World::new();
+        // Nearly any type can be used as a component with zero boilerplate
+        let a = world.spawn((123, true, "abc"));
+        let b = world.spawn((42, false));
+        // Systems can be simple for loops
+        for (id, (number, &flag)) in world.query_mut::<(&mut i32, &bool)>() {
+            if flag {
+                *number *= 2;
+            }
+        }
+    */
     let document = web_sys::window().unwrap().document().unwrap();
     let canvas = document.get_element_by_id("canvas").unwrap();
     let canvas: web_sys::HtmlCanvasElement = canvas.dyn_into::<web_sys::HtmlCanvasElement>()?;
